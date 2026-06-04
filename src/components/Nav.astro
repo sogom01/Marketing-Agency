@@ -1,0 +1,126 @@
+---
+const links = [
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#trabajo',   label: 'Trabajo' },
+  { href: '#proceso',   label: 'Proceso' },
+];
+---
+
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">PULSO<span class="dot">.</span></a>
+
+    <div class="nav-links" id="navlinks">
+      {links.map(l => <a href={l.href}>{l.label}</a>)}
+      <a href="#contacto" class="btn btn--blue">Hablemos</a>
+    </div>
+
+    <button class="menu-toggle" id="toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<style>
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  transition: padding .4s, background .4s, border-color .4s;
+}
+nav.scrolled {
+  background: rgba(242,240,234,.88);
+  backdrop-filter: blur(14px);
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+}
+.logo .dot { color: var(--blue); }
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.nav-links a {
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  transition: color .3s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 101;
+}
+.menu-toggle span {
+  width: 26px;
+  height: 2.5px;
+  background: var(--ink);
+  transition: .3s;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(78vw, 320px);
+    background: var(--cream);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 40px;
+    gap: 26px;
+    transform: translateX(100%);
+    transition: transform .4s cubic-bezier(.6,0,.2,1);
+    box-shadow: -20px 0 60px rgba(0,0,0,.1);
+  }
+  .nav-links.open { transform: translateX(0); }
+  .nav-links a { font-size: 1.2rem; color: var(--ink); }
+  .menu-toggle { display: flex; }
+}
+</style>
+
+<script>
+  const nav    = document.getElementById('nav')!;
+  const toggle = document.getElementById('toggle')!;
+  const links  = document.getElementById('navlinks')!;
+
+  // Scrolled state
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Mobile menu
+  toggle.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close on link click
+  links.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>

@@ -1,0 +1,120 @@
+---
+const cases = [
+  {
+    big: true,
+    img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1400&q=80',
+    alt: 'Proyecto de branding Lumen Cosmética',
+    cat: 'Branding · Web',
+    title: 'Lumen Cosmética',
+    year: "'26",
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=800&q=80',
+    alt: 'Diseño web Nido Inmobiliaria',
+    cat: 'Diseño web',
+    title: 'Nido Inmobiliaria',
+    year: "'25",
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80',
+    alt: 'Campaña social Café Aurora',
+    cat: 'Social · Ads',
+    title: 'Café Aurora',
+    year: "'25",
+  },
+];
+---
+
+<section class="section work" id="trabajo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Trabajo seleccionado</span>
+        <h2>Proyectos recientes</h2>
+      </div>
+      <p>Una muestra de lo que hemos construido con marcas que se atrevieron a destacar.</p>
+    </div>
+
+    <div class="work-grid">
+      {cases.map(c => (
+        <article class:list={['case reveal', { big: c.big }]}>
+          <img src={c.img} alt={c.alt} loading="lazy" decoding="async" />
+          <div class="case-meta">
+            <div>
+              <span class="cat">{c.cat}</span>
+              <h3>{c.title}</h3>
+            </div>
+            <span class="yr">{c.year}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.work {
+  background: var(--ink);
+  color: var(--cream);
+}
+.work .eyebrow     { color: #8C8DFF; }
+.work .sec-head h2 { color: var(--cream); }
+.work .sec-head p  { color: rgba(251,250,246,.6); }
+
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.case {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  aspect-ratio: 16 / 11;
+  cursor: pointer;
+}
+.case img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s cubic-bezier(.2,.7,.3,1);
+  filter: saturate(1.05);
+}
+.case:hover img { transform: scale(1.06); }
+
+.case-meta {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 26px;
+  background: linear-gradient(0deg, rgba(20,19,15,.9), transparent);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.case-meta h3  { font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--cream); }
+.case-meta .cat {
+  display: block;
+  font-size: .78rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #8C8DFF;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.case-meta .yr {
+  font-family: var(--font-display);
+  color: rgba(251,250,246,.6);
+  font-size: .95rem;
+}
+
+.case.big {
+  grid-column: span 2;
+  aspect-ratio: 21 / 9;
+}
+
+@media (max-width: 900px) {
+  .work-grid          { grid-template-columns: 1fr; }
+  .case.big           { grid-column: span 1; aspect-ratio: 16 / 11; }
+}
+</style>

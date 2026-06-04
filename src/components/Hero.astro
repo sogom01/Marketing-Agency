@@ -1,0 +1,70 @@
+---
+---
+
+<header>
+  <div class="wrap hero">
+    <span class="eyebrow">Estudio creativo + marketing digital</span>
+    <h1>Marcas que<br>la gente <em class="rot" aria-live="polite">recuerda</em>.</h1>
+    <div class="hero-sub">
+      <p>Diseñamos identidades, sitios y campañas que no pasan desapercibidas. Estrategia, diseño y resultados en un solo equipo.</p>
+      <a href="#contacto" class="btn btn--blue">Empieza tu proyecto →</a>
+    </div>
+  </div>
+</header>
+
+<style>
+header {
+  padding: clamp(140px, 20vh, 200px) 0 clamp(40px, 7vh, 80px);
+}
+.hero > * {
+  opacity: 0;
+  animation: rise .85s forwards;
+}
+.hero .eyebrow { animation-delay: .15s; }
+.hero h1       { animation-delay: .28s; }
+.hero-sub      { animation-delay: .5s; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 10vw, 8.5rem);
+  font-weight: 800;
+  margin-bottom: .3em;
+}
+.hero h1 .rot {
+  color: var(--blue);
+  font-style: italic;
+  transition: opacity .3s;
+}
+.hero-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.hero-sub p {
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  color: var(--ink-soft);
+  max-width: 440px;
+}
+</style>
+
+<script>
+  const words = ['recuerda', 'desea', 'sigue', 'elige'];
+  let idx = 0;
+  const rot = document.querySelector<HTMLElement>('.rot');
+  if (rot) {
+    setInterval(() => {
+      idx = (idx + 1) % words.length;
+      rot.style.opacity = '0';
+      setTimeout(() => {
+        rot.textContent = words[idx];
+        rot.style.opacity = '1';
+      }, 300);
+    }, 2600);
+  }
+</script>

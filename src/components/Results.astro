@@ -1,0 +1,45 @@
+---
+const stats = [
+  { n: '+180%', l: 'Promedio de crecimiento en alcance' },
+  { n: '3.4x',  l: 'Retorno medio en campañas de ads' },
+  { n: '60+',   l: 'Marcas acompañadas' },
+  { n: '98%',   l: 'Clientes que repiten con nosotros' },
+];
+---
+
+<section class="section results">
+  <div class="wrap results-grid">
+    {stats.map(s => (
+      <div class="res reveal">
+        <div class="n">{s.n}</div>
+        <div class="l">{s.l}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+.res {
+  border-top: 3px solid var(--blue);
+  padding-top: 20px;
+}
+.res .n {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1;
+}
+.res .l {
+  color: var(--ink-soft);
+  margin-top: 8px;
+  font-size: .95rem;
+}
+
+@media (max-width: 900px) { .results-grid { grid-template-columns: 1fr 1fr; gap: 34px; } }
+@media (max-width: 480px) { .results-grid { grid-template-columns: 1fr; } }
+</style>

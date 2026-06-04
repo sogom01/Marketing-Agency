@@ -1,0 +1,20 @@
+/* Design tokens — PULSO */
+:root {
+  --paper:    #F2F0EA;
+  --paper-2:  #E9E6DD;
+  --ink:      #14130F;
+  --ink-soft: #56544C;
+  --blue:     #2A2BF5;
+  --blue-deep:#1C1CCC;
+  --cream:    #FBFAF6;
+  --line:     rgba(20,19,15,.12);
+
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body:    'Hanken Grotesk', sans-serif;
+
+  --wrap-max:  1280px;
+  --wrap-pad:  clamp(20px, 5vw, 56px);
+
+  --section-py: clamp(80px, 12vh, 150px);
+  --radius-card: 10px;
+}

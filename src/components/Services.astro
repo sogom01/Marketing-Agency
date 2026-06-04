@@ -1,0 +1,73 @@
+---
+const services = [
+  { no: '01', title: 'Branding & Identidad',      desc: 'Logo, paleta, voz y todo lo que hace que tu marca se vea como una sola.' },
+  { no: '02', title: 'Diseño & Desarrollo Web',   desc: 'Sitios rápidos, bonitos y que convierten visitas en clientes.' },
+  { no: '03', title: 'Social Media',              desc: 'Contenido y comunidad para que tu marca viva donde está tu audiencia.' },
+  { no: '04', title: 'Performance & Ads',         desc: 'Campañas en Meta y Google optimizadas por retorno, no por likes.' },
+];
+---
+
+<section class="section services" id="servicios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Lo que hacemos</h2>
+      <p>Un equipo completo, sin las complicaciones de coordinar cinco proveedores distintos.</p>
+    </div>
+
+    {services.map(s => (
+      <article class="srv reveal">
+        <span class="no" aria-hidden="true">{s.no}</span>
+        <h3>{s.title}</h3>
+        <span class="desc">{s.desc}</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+.services { border-top: 1px solid var(--line); }
+
+.srv {
+  display: grid;
+  grid-template-columns: 60px 1.2fr 2fr auto;
+  gap: 30px;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding .35s, background .35s;
+  cursor: default;
+}
+.srv:hover {
+  padding-left: 18px;
+  background: linear-gradient(90deg, rgba(42,43,245,.05), transparent);
+}
+.srv .no {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--blue);
+  font-weight: 700;
+}
+.srv h3 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; }
+.srv .desc { color: var(--ink-soft); font-size: .98rem; }
+.srv .arrow {
+  font-size: 1.6rem;
+  color: var(--ink);
+  transition: .35s;
+  opacity: .3;
+}
+.srv:hover .arrow {
+  opacity: 1;
+  color: var(--blue);
+  transform: translateX(6px);
+}
+
+@media (max-width: 900px) {
+  .srv {
+    grid-template-columns: auto 1fr;
+    gap: 6px 18px;
+  }
+  .srv .desc  { grid-column: 1 / -1; }
+  .srv .arrow { display: none; }
+}
+</style>
